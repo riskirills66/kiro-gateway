@@ -22,8 +22,14 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy application code
 COPY --chown=kiro:kiro . .
 
+# Make entrypoint script executable
+RUN chmod +x /app/entrypoint.sh
+
 # Create directory for debug logs with proper permissions
 RUN mkdir -p debug_logs && chown -R kiro:kiro debug_logs
+
+# Create AWS SSO cache directory with proper permissions
+RUN mkdir -p /home/kiro/.aws/sso/cache && chown -R kiro:kiro /home/kiro/.aws
 
 # Switch to non-root user
 USER kiro
@@ -36,5 +42,5 @@ EXPOSE 8000
 HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
     CMD python -c "import httpx; httpx.get('http://localhost:8000/health', timeout=5)"
 
-# Run the application
-CMD ["python", "main.py"]
+# Run the application via entrypoint script
+CMD ["/app/entrypoint.sh"]

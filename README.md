@@ -68,6 +68,7 @@ Made with ❤️ by [@Jwadow](https://github.com/jwadow)
 **Choose your deployment method:**
 - 🐍 **Native Python** - Full control, easy debugging
 - 🐳 **Docker** - Isolated environment, easy deployment → [jump to Docker](#-docker-deployment)
+- ☁️ **Fly.io** - Cloud deployment, auto-scaling, free tier → [Fly.io Quick Start](docs/fly-deployment-quickstart.md)
 
 ### Prerequisites
 
