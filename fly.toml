@@ -1,4 +1,4 @@
-# fly.toml app configuration file generated for kiro-gateway on 2026-03-04T07:57:25+07:00
+# fly.toml app configuration file generated for kiro-gateway on 2026-03-23T11:23:58Z
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
@@ -8,17 +8,8 @@ primary_region = 'sin'
 
 [build]
 
-[env]
-  # Timeout settings - increased for slow Kiro API responses
-  FIRST_TOKEN_TIMEOUT = "30"
-  STREAMING_READ_TIMEOUT = "120"
-  FIRST_TOKEN_MAX_RETRIES = "3"
-  
-  # Optional: Disable fake reasoning to reduce latency
-  FAKE_REASONING = "false"
-
 [http_service]
-  internal_port = 8000
+  internal_port = 8080
   force_https = true
   auto_stop_machines = 'stop'
   auto_start_machines = true
@@ -26,7 +17,7 @@ primary_region = 'sin'
   processes = ['app']
 
 [[vm]]
-  memory = '256mb'
+  memory = '1gb'
   cpu_kind = 'shared'
   cpus = 1
   memory_mb = 256
